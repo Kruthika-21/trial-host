@@ -11,3 +11,5 @@ def change_page():
 @app.route('/change_trip', methods=['GET', 'POST'])
 def change_trip():
     return render_template('simp.html')
+
+# I have changed it
