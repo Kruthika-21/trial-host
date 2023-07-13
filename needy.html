@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mapbox Example</title>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>RESCUEBITES-We stand with you</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  <style>
+    #map {
+      height: 1000px;
+      width: 100%;
+    }
+  </style>
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.js"></script>
+  <script>
+
+  </script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.4.0/mapbox-gl.css" rel="stylesheet" />
+</head>
+<body onload="info();">
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>RESCUEBITES<span>.</span></h1>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#events">Events</a></li>
+          <li class="dropdown"><a href="#"><span>Menu</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Drop Down 2</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+
+    </div>
+  </header><!-- End Header -->
+  <h1>Mapbox Example</h1>
+  <div id="map"></div>
+
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiaWFtYmNiaGF0dCIsImEiOiJjbGp6cXN0YzEwN2ZjM3FubmE4dDJoMTJrIn0.pW-dni-iTCDRySouUQwUwg'; // Replace with your Mapbox access token
+
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11', // Replace with your desired map style
+      center:[75.7139, 15.3173], // Example: San Francisco coordinates
+      zoom: 5 // Adjust the zoom level as needed
+    });
+
+    map.addControl(new mapboxgl.NavigationControl());
+    map.dragPan.enable();
+    if ('geolocation' in navigator) {
+  navigator.geolocation.getCurrentPosition(success, error);
+} else {
+  console.log('Geolocation is not supported');
+}
+
+// Success callback for geolocation
+function success(position) {
+  const { latitude, longitude } = position.coords;
+  const userLocation = [longitude, latitude];
+
+  // Create a marker for the user's location
+  new mapboxgl.Marker()
+  new mapboxgl.Marker({
+   color: '#FF0000' // Red marker color
+ })
+    .setLngLat(userLocation)
+    .addTo(map);
+}
+
+// Error callback for geolocation
+function error(error) {
+  console.log('Error getting current location:', error.message);
+}
+    const locations = [
+      {
+        name: 'Byrasandra',
+       coordinates: [77.585990,12.934970], // Example: San Francisco coordinates
+        url: 'index.html' // URL of the page to navigate to
+      },
+      {
+        name: 'Baiyappanahalli',
+        coordinates: [77.637650,13.003130], // Example: Los Angeles coordinates
+        url: 'https://example.com/los-angeles' // URL of the page to navigate to
+      }
+      // Add more locations as needed
+    ];
+
+    locations.forEach((location) => {
+      const marker = new mapboxgl.Marker()
+        .setLngLat(location.coordinates)
+        .addTo(map);
+
+      marker.getElement().addEventListener('click', () => {
+        window.location.href = location.url; // Navigate to the specified URL
+      });
+    });
+  </script>
+  <footer id="footer" class="footer">
+
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div>
+            <h4>Address</h4>
+            <p>
+              RV College Of Engineering <br>
+              Pattanagere- Blore<br>
+            </p>
+          </div>
+
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-links d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Timings</h4>
+            <p>
+              <strong>Phone:</strong> +91 9900497277<br>
+              <strong>Email:</strong> abc@gmail.com<br>
+            </p>
+          </div>
+        </div>
+
+
+        <div class="col-lg-3 col-md-6 footer-links">
+          <h4>Follow Us</h4>
+          <div class="social-links d-flex">
+            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </footer ><!-- End Footer -->
+  <!-- End Footer -->
+</body>
+</html>
