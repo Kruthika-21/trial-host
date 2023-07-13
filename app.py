@@ -10,6 +10,6 @@ def change_page():
 
 @app.route('/change_trip', methods=['GET', 'POST'])
 def change_trip():
-    return render_template('simp.html')
+    return render_template('login.html')
 
 # I have changed it
